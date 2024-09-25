@@ -36,4 +36,11 @@ enum ErrorsCode StackPop(StackStruct* st, StackElem_t* value);
 
 enum ErrorsCode StackDtor(StackStruct* st);
 
+enum ErrorsCode DumpPrint(FILE* filename, StackStruct* st,
+                          const char *file, const char *func, int line, enum ErrorsCode status);
+
+enum ErrorsCode StackResize(StackStruct* st, size_t new_size);
+
+enum ErrorsCode ReCalloc(StackStruct* st, size_t new_size);
+
 #endif // STACKMETHODS_H
