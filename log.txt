@@ -1,0 +1,416 @@
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 36 (StackCtor -> CTOR_START) {
+            size = 0,
+            capacity = 0,
+            data [0000000000000000] {
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 45 (StackCtor -> CTOR_END) {
+            size = 0,
+            capacity = 2,
+            data [000002d13bb96de0] {
+                 [0] -666 (POISON)
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 131 (StackPush -> PUSH_START) {
+            size = 0,
+            capacity = 2,
+            data [000002d13bb96de0] {
+                 [0] -666 (POISON)
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 139 (StackPush -> PUSH_END) {
+            size = 1,
+            capacity = 2,
+            data [000002d13bb96de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 131 (StackPush -> PUSH_START) {
+            size = 1,
+            capacity = 2,
+            data [000002d13bb96de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 139 (StackPush -> PUSH_END) {
+            size = 2,
+            capacity = 2,
+            data [000002d13bb96de0] {
+               * [0] 10
+               * [1] 20
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 131 (StackPush -> PUSH_START) {
+            size = 2,
+            capacity = 2,
+            data [000002d13bb96de0] {
+               * [0] 10
+               * [1] 20
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 181 (StackResize -> RESIZE_START) {
+            size = 2,
+            capacity = 2,
+            data [000002d13bb96de0] {
+               * [0] 10
+               * [1] 20
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 185 (StackResize -> RESIZE_END) {
+            size = 2,
+            capacity = 4,
+            data [000002d13bb96de0] {
+               * [0] 10
+               * [1] 20
+                 [2] -666 (POISON)
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 139 (StackPush -> PUSH_END) {
+            size = 3,
+            capacity = 4,
+            data [000002d13bb96de0] {
+               * [0] 10
+               * [1] 20
+               * [2] 30
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 147 (StackPop -> POP_START) {
+            size = 3,
+            capacity = 4,
+            data [000002d13bb96de0] {
+               * [0] 10
+               * [1] 20
+               * [2] 30
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 161 (StackPop -> POP_END) {
+            size = 2,
+            capacity = 4,
+            data [000002d13bb96de0] {
+               * [0] 10
+               * [1] 20
+                 [2] -666 (POISON)
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 147 (StackPop -> POP_START) {
+            size = 2,
+            capacity = 4,
+            data [000002d13bb96de0] {
+               * [0] 10
+               * [1] 20
+                 [2] -666 (POISON)
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 181 (StackResize -> RESIZE_START) {
+            size = 1,
+            capacity = 4,
+            data [000002d13bb96de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+                 [2] -666 (POISON)
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 185 (StackResize -> RESIZE_END) {
+            size = 1,
+            capacity = 2,
+            data [000002d13bb96de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 161 (StackPop -> POP_END) {
+            size = 1,
+            capacity = 2,
+            data [000002d13bb96de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 131 (StackPush -> PUSH_START) {
+            size = 1,
+            capacity = 2,
+            data [000002d13bb96de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 139 (StackPush -> PUSH_END) {
+            size = 2,
+            capacity = 2,
+            data [000002d13bb96de0] {
+               * [0] 10
+               * [1] 20
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 168 (StackDtor -> DTOR_START) {
+            size = 2,
+            capacity = 2,
+            data [000002d13bb96de0] {
+               * [0] 10
+               * [1] 20
+            }
+}
+
+DUMPED 2024-09-26 03:40:06
+Stack [000002d13bb9be30] {st} src/main.cpp: 9, from src/StackMethods.cpp: 174 (StackDtor -> DTOR_END) {
+            size = 0,
+            capacity = 0,
+            data [0000000000000000] {
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 36 (StackCtor -> CTOR_START) {
+            size = 0,
+            capacity = 0,
+            data [0000000000000000] {
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 45 (StackCtor -> CTOR_END) {
+            size = 0,
+            capacity = 2,
+            data [0000020a12006de0] {
+                 [0] -666 (POISON)
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 131 (StackPush -> PUSH_START) {
+            size = 0,
+            capacity = 2,
+            data [0000020a12006de0] {
+                 [0] -666 (POISON)
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 139 (StackPush -> PUSH_END) {
+            size = 1,
+            capacity = 2,
+            data [0000020a12006de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 131 (StackPush -> PUSH_START) {
+            size = 1,
+            capacity = 2,
+            data [0000020a12006de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 139 (StackPush -> PUSH_END) {
+            size = 2,
+            capacity = 2,
+            data [0000020a12006de0] {
+               * [0] 10
+               * [1] 20
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 131 (StackPush -> PUSH_START) {
+            size = 2,
+            capacity = 2,
+            data [0000020a12006de0] {
+               * [0] 10
+               * [1] 20
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 181 (StackResize -> RESIZE_START) {
+            size = 2,
+            capacity = 2,
+            data [0000020a12006de0] {
+               * [0] 10
+               * [1] 20
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 185 (StackResize -> RESIZE_END) {
+            size = 2,
+            capacity = 4,
+            data [0000020a12006de0] {
+               * [0] 10
+               * [1] 20
+                 [2] -666 (POISON)
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 139 (StackPush -> PUSH_END) {
+            size = 3,
+            capacity = 4,
+            data [0000020a12006de0] {
+               * [0] 10
+               * [1] 20
+               * [2] 30
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 147 (StackPop -> POP_START) {
+            size = 3,
+            capacity = 4,
+            data [0000020a12006de0] {
+               * [0] 10
+               * [1] 20
+               * [2] 30
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 161 (StackPop -> POP_END) {
+            size = 2,
+            capacity = 4,
+            data [0000020a12006de0] {
+               * [0] 10
+               * [1] 20
+                 [2] -666 (POISON)
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 147 (StackPop -> POP_START) {
+            size = 2,
+            capacity = 4,
+            data [0000020a12006de0] {
+               * [0] 10
+               * [1] 20
+                 [2] -666 (POISON)
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 181 (StackResize -> RESIZE_START) {
+            size = 1,
+            capacity = 4,
+            data [0000020a12006de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+                 [2] -666 (POISON)
+                 [3] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 185 (StackResize -> RESIZE_END) {
+            size = 1,
+            capacity = 2,
+            data [0000020a12006de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 161 (StackPop -> POP_END) {
+            size = 1,
+            capacity = 2,
+            data [0000020a12006de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 131 (StackPush -> PUSH_START) {
+            size = 1,
+            capacity = 2,
+            data [0000020a12006de0] {
+               * [0] 10
+                 [1] -666 (POISON)
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 139 (StackPush -> PUSH_END) {
+            size = 2,
+            capacity = 2,
+            data [0000020a12006de0] {
+               * [0] 10
+               * [1] 20
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 168 (StackDtor -> DTOR_START) {
+            size = 2,
+            capacity = 2,
+            data [0000020a12006de0] {
+               * [0] 10
+               * [1] 20
+            }
+}
+
+DUMPED 2024-09-26 03:47:20
+Stack [0000020a1200c680] {st} src/main.cpp: 9, from src/StackMethods.cpp: 174 (StackDtor -> DTOR_END) {
+            size = 0,
+            capacity = 0,
+            data [0000000000000000] {
+            }
+}
+
