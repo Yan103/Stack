@@ -1,16 +1,16 @@
 #ifndef STACKMETHODS_H
 #define STACKMETHODS_H
 
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 
-#include "StackStruct.h"
-#include "Errors.h"
+#include "Stack.h"
+#include "ReturnCodes.h"
 
 const int POISON_NUM = -666;
 const int START_SIZE = 2;
 
-#define INIT(st) st.filename = __FILE__, st.line = __LINE__, st.var_name = #st
+#define STACK_INIT(st) { StackInit(&st, __FILE__, __func__, __LINE__, #st); }
 
 #define STACK_DUMP(st, status) { StackDump(st, __FILE__, __func__, __LINE__, status); }
 
@@ -22,25 +22,29 @@ const int START_SIZE = 2;
     }                                    \
     }                                    \
 
-enum ErrorsCode StackCtor(StackStruct* st, size_t capacity);
+enum ReturnCode StackInit(Stack** st, const char *file, const char *func, int line, const char* var_name);
 
-enum ErrorsCode StackDump(StackStruct* st, const char *file, const char *func, int line, enum ErrorsCode status);
+enum ReturnCode StackCtor(Stack* st, size_t capacity);
 
-int StackOk(StackStruct* st);
+enum ReturnCode StackDump(Stack* st, const char *file, const char *func, int line, enum ReturnCode status);
 
-const char* StackStrErr(enum ErrorsCode error);
+int StackOk(Stack* st);
 
-enum ErrorsCode StackPush(StackStruct* st, StackElem_t value);
+const char* StackStrErr(enum ReturnCode error);
 
-enum ErrorsCode StackPop(StackStruct* st, StackElem_t* value);
+enum ReturnCode StackPush(Stack* st, StackElem_t value);
 
-enum ErrorsCode StackDtor(StackStruct* st);
+enum ReturnCode StackPop(Stack* st, StackElem_t* value);
 
-enum ErrorsCode DumpPrint(FILE* filename, StackStruct* st,
-                          const char *file, const char *func, int line, enum ErrorsCode status);
+enum ReturnCode StackDtor(Stack* st);
 
-enum ErrorsCode StackResize(StackStruct* st, size_t new_size);
+enum ReturnCode DumpPrint(FILE* filename, Stack* st,
+                          const char *file, const char *func, int line, enum ReturnCode status);
 
-enum ErrorsCode ReCalloc(StackStruct* st, size_t new_size);
+enum ReturnCode StackResize(Stack* st, size_t new_size);
+
+enum ReturnCode ReCalloc(Stack* st, size_t new_size);
+
+size_t StackCheck(Stack* st, StackElem_t* find_value);
 
 #endif // STACKMETHODS_H
