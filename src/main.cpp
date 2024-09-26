@@ -1,25 +1,42 @@
 #include <stdio.h>
 
-#include "StackStruct.h"
+#include "Default.h"
+#include "Stack.h"
 #include "StackMethods.h"
-#include "default.h"
 
 int main() {
-    StackStruct st = {INIT(st)};
+    Stack* st = NULL;
+    STACK_INIT(st);
 
-    StackCtor(&st, START_SIZE);
+    // todo fix warnings
+    //* todo make st a pointer
+    //* todo struct?
+    //* todo POISON
+    //! todo logs: 0xaddress
+    // todo logs: handle corrupted debug data
+    //* todo make poisons explicit: -666 (POISON)
+    // todo make logs and checks disableable
+    // todo fix sanitizer PRIKOLY
+    // todo add err_bits (bit vector)
 
-    StackPush(&st, 10);
-    StackPush(&st, 20);
-    StackPush(&st, 30);
+    StackCtor(st, START_SIZE);
+
+    StackPush(st, 10);
+    StackPush(st, 20);
+    StackPush(st, 30);
 
     int x = -1;
-    StackPop(&st, &x);
+    StackPop(st, &x);
 
     printf("%d\n", x);
-    StackPop(&st, &x);
+    StackPop(st, &x);
 
-    StackDtor(&st);
+    int y = 30;
+    printf("%lld\n", StackCheck(st, &y)); y = 20;
+    StackPush(st, 20);
+    printf("%lld\n", StackCheck(st, &y));
 
-    return 0;
+    StackDtor(st);
+
+    return SUCCESS;
 }
