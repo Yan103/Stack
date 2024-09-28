@@ -18,33 +18,32 @@ const int START_SIZE = 2;
     if (!StackOk(st)) {                  \
         STACK_DUMP(st, status);          \
         assert(0);                       \
-        return ERROR;                    \
     }                                    \
-    }                                    \
+}                                        \
 
-enum ReturnCode StackInit(Stack** st, const char *file, const char *func, int line, const char* var_name);
+enum FuncReturn StackInit(Stack** st, const char *file, const char *func, int line, const char* var_name);
 
-enum ReturnCode StackCtor(Stack* st, size_t capacity);
+enum FuncReturn StackCtor(Stack* st, size_t capacity);
 
-enum ReturnCode StackDump(Stack* st, const char *file, const char *func, int line, enum ReturnCode status);
+enum FuncReturn StackDump(Stack* st, const char *file, const char *func, int line, FuncReturn status);
 
 int StackOk(Stack* st);
 
-const char* StackStrErr(enum ReturnCode error);
+const char* StackStrErr(FuncReturn error);
 
-enum ReturnCode StackPush(Stack* st, StackElem_t value);
+enum FuncReturn StackPush(Stack* st, StackElem_t value);
 
-enum ReturnCode StackPop(Stack* st, StackElem_t* value);
+enum FuncReturn StackPop(Stack* st, StackElem_t* value);
 
-enum ReturnCode StackDtor(Stack* st);
+enum FuncReturn StackDtor(Stack* st);
 
-enum ReturnCode DumpPrint(FILE* filename, Stack* st,
-                          const char *file, const char *func, int line, enum ReturnCode status);
+enum FuncReturn DumpPrint(FILE* filename, Stack* st,
+                          const char *file, const char *func, int line, FuncReturn status);
 
-enum ReturnCode StackResize(Stack* st, size_t new_size);
+enum FuncReturn StackResize(Stack* st, size_t new_size);
 
-enum ReturnCode ReCalloc(Stack* st, size_t new_size);
+enum FuncReturn ReCalloc(Stack* st, size_t new_size);
 
-size_t StackCheck(Stack* st, StackElem_t* find_value);
+size_t StackFind(Stack* st, StackElem_t* find_value);
 
 #endif // STACKMETHODS_H
