@@ -12,7 +12,16 @@
 const char* LOG_FILE         = "log.txt";
 const char* ERR_MSG_NULL_PTR = "Null pointer was passed";
 
-enum ReturnCode StackInit(Stack** st, const char *file, const char *func, int line, const char* var_name) {
+#define DEBUG_INFO(st) { \
+    (st)->debug_info = (DebugInfo*) calloc(1, sizeof(DebugInfo)); \
+    STACK_ASSERT(st, BAD_PTR); \
+    (st)->debug_info->filename = file;        \
+    (st)->debug_info->func = func;              \
+    (st)->debug_info->line = line;              \
+    (st)->debug_info->var_name = var_name;   \
+}                                               \
+
+enum FuncReturn StackInit(Stack** st, const char *file, const char *func, int line, const char* var_name) {
     ASSERT(st   != NULL, "NULL POINTER!");
     ASSERT(file != NULL, ERR_MSG_NULL_PTR);
     ASSERT(file != NULL, ERR_MSG_NULL_PTR);
@@ -20,18 +29,12 @@ enum ReturnCode StackInit(Stack** st, const char *file, const char *func, int li
     (*st) = (Stack*) calloc(1, sizeof(Stack));
     STACK_ASSERT(*st, BAD_PTR);
 
-    (*st)->debug_info = (DebugInfo*) calloc(1, sizeof(DebugInfo));
-    STACK_ASSERT(*st, BAD_PTR);
-
-    (*st)->debug_info->filename = file;
-    (*st)->debug_info->func = func;
-    (*st)->debug_info->line = line;
-    (*st)->debug_info->var_name = var_name;
+    DEBUG_INFO(*st);
 
     return SUCCESS;
 }
 
-enum ReturnCode StackCtor(Stack* st, size_t capacity) {
+enum FuncReturn StackCtor(Stack* st, size_t capacity) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
     STACK_DUMP(st, CTOR_START);
 
@@ -47,7 +50,7 @@ enum ReturnCode StackCtor(Stack* st, size_t capacity) {
     return SUCCESS;
 }
 
-enum ReturnCode StackDump(Stack* st, const char* file, const char* func, int line, enum ReturnCode status) {
+FuncReturn StackDump(Stack* st, const char* file, const char* func, int line, FuncReturn status) {
     STACK_ASSERT(st, BAD_PTR);
     ASSERT(file != NULL, ERR_MSG_NULL_PTR);
     ASSERT(func != NULL, ERR_MSG_NULL_PTR);
@@ -73,8 +76,8 @@ static tm GetTime() {
     return *localtime(&time_now);
 }
 
-enum ReturnCode DumpPrint(FILE* filename, Stack* st,
-                          const char *file, const char *func, int line, enum ReturnCode status) {
+enum FuncReturn DumpPrint(FILE* filename, Stack* st,
+                          const char *file, const char *func, int line, FuncReturn status) {
     STACK_ASSERT(st, BAD_PTR);
     ASSERT(filename != NULL, ERR_MSG_NULL_PTR);
     ASSERT(file     != NULL, ERR_MSG_NULL_PTR);
@@ -107,7 +110,7 @@ int StackOk(Stack* st) {  // todo add more checks, size < capacity, poisons afte
     return (st != NULL);        //*(st != NULL && st->data != NULL)
 }
 
-const char* StackStrErr(enum ReturnCode error) {
+const char* StackStrErr(FuncReturn error) {
     #define DESCR_(error) { case error: return #error; }
     switch (error) {
         DESCR_(SUCCESS);
@@ -120,13 +123,14 @@ const char* StackStrErr(enum ReturnCode error) {
         DESCR_(POP_START);    DESCR_(POP_END);
         DESCR_(PUSH_START);   DESCR_(PUSH_END);
         DESCR_(CTOR_START);   DESCR_(CTOR_END);
+        DESCR_(CLEAN_START);  DESCR_(CLEAN_END);
         DESCR_(RESIZE_START); DESCR_(RESIZE_END);
         default: return "UNKNOWN STATUS";
     }
     #undef DESCR_
 }
 
-enum ReturnCode StackPush(Stack* st, StackElem_t value) {
+enum FuncReturn StackPush(Stack* st, StackElem_t value) {
     STACK_ASSERT(st, BAD_PTR);
     STACK_DUMP(st, PUSH_START);
 
@@ -141,7 +145,7 @@ enum ReturnCode StackPush(Stack* st, StackElem_t value) {
     return SUCCESS;
 }
 
-enum ReturnCode StackPop(Stack* st, StackElem_t* value) {
+enum FuncReturn StackPop(Stack* st, StackElem_t* value) {
     STACK_ASSERT(st, BAD_PTR);
     ASSERT(value != NULL, ERR_MSG_NULL_PTR);
     STACK_DUMP(st, POP_START);
@@ -163,7 +167,7 @@ enum ReturnCode StackPop(Stack* st, StackElem_t* value) {
     return SUCCESS;
 }
 
-enum ReturnCode StackDtor(Stack* st) {
+enum FuncReturn StackDtor(Stack* st) {
     STACK_ASSERT(st, BAD_PTR);
     STACK_DUMP(st, DTOR_START);
 
@@ -176,7 +180,7 @@ enum ReturnCode StackDtor(Stack* st) {
     return SUCCESS;
 }
 
-enum ReturnCode StackResize(Stack* st, size_t new_size) {
+enum FuncReturn StackResize(Stack* st, size_t new_size) {
     STACK_ASSERT(st, BAD_PTR);
     STACK_DUMP(st, RESIZE_START);
 
@@ -187,7 +191,7 @@ enum ReturnCode StackResize(Stack* st, size_t new_size) {
     return SUCCESS;
 }
 
-enum ReturnCode ReCalloc(Stack* st, size_t new_size) {
+enum FuncReturn ReCalloc(Stack* st, size_t new_size) {
     STACK_ASSERT(st, BAD_PTR);
 
     st->data = (StackElem_t*) realloc(st->data, sizeof(StackElem_t) * new_size);
@@ -199,7 +203,7 @@ enum ReturnCode ReCalloc(Stack* st, size_t new_size) {
     return SUCCESS;
 }
 
-size_t StackCheck(Stack* st, StackElem_t* find_value) {
+size_t StackFind(Stack* st, StackElem_t* find_value) {
     STACK_ASSERT(st, BAD_PTR);
     ASSERT(find_value != NULL, ERR_MSG_NULL_PTR);
 

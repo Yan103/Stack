@@ -8,7 +8,7 @@ int main() {
     Stack* st = NULL;
     STACK_INIT(st);
 
-    // todo fix warnings
+    //? todo fix warnings
     //* todo make st a pointer
     //* todo struct?
     //* todo POISON
@@ -16,8 +16,8 @@ int main() {
     // todo logs: handle corrupted debug data
     //* todo make poisons explicit: -666 (POISON)
     // todo make logs and checks disableable
-    // todo fix sanitizer PRIKOLY
-    // todo add err_bits (bit vector)
+    //? todo fix sanitizer PRIKOLY
+    //? todo add err_bits (bit vector)
 
     StackCtor(st, START_SIZE);
 
@@ -32,9 +32,9 @@ int main() {
     StackPop(st, &x);
 
     int y = 30;
-    printf("%lld\n", StackCheck(st, &y)); y = 20;
+    printf("%lld\n", StackFind(st, &y)); y = 20;
     StackPush(st, 20);
-    printf("%lld\n", StackCheck(st, &y));
+    printf("%lld\n", StackFind(st, &y));
 
     StackDtor(st);
 
