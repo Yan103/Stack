@@ -22,13 +22,13 @@ EXECUTABLE= $(BIN_DIR)/stack
 all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
-	@$(CC) $(OBJECTS) -o $@
+	@$(CC) $(CFLAGS) $(OBJECTS) -o $@
 
 $(OBJECTS): $(OBJ_DIR)/%.o : $(SRC_DIR)/%.cpp
 	@$(CC) -c $(CFLAGS) -I$(INC_DIR) $< -o $@
 
 run: $(EXECUTABLE)
-	@ ./$(EXECUTABLE)
+	@./$(EXECUTABLE)
 
 clean:
 	@rm -v $(BIN_DIR)/*
