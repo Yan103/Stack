@@ -12,59 +12,55 @@
 const char* LOG_FILE         = "log.txt";
 const char* ERR_MSG_NULL_PTR = "Null pointer was passed";
 
-#define DEBUG_INFO(st) { \
-    (st)->debug_info = (DebugInfo*) calloc(1, sizeof(DebugInfo)); \
-    STACK_ASSERT(st, BAD_PTR); \
-    (st)->debug_info->filename = file;        \
-    (st)->debug_info->func = func;              \
-    (st)->debug_info->line = line;              \
-    (st)->debug_info->var_name = var_name;   \
-}                                               \
-
 enum FuncReturn StackInit(Stack** st, const char *file, const char *func, int line, const char* var_name) {
-    ASSERT(st   != NULL, "NULL POINTER!");
-    ASSERT(file != NULL, ERR_MSG_NULL_PTR);
-    ASSERT(file != NULL, ERR_MSG_NULL_PTR);
+    ASSERT(st   != NULL, ERR_MSG_NULL_PTR);
 
     (*st) = (Stack*) calloc(1, sizeof(Stack));
-    STACK_ASSERT(*st, BAD_PTR);
+    ASSERT(st   != NULL, ERR_MSG_NULL_PTR);
 
     DEBUG_INFO(*st);
 
     return SUCCESS;
 }
-
+// todo 1 func
 enum FuncReturn StackCtor(Stack* st, size_t capacity) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
-    STACK_DUMP(st, CTOR_START);
+    StackKanaryCheck(st);
+    STACK_DUMP(st);
 
     st->data = 0;
     st->capacity = capacity;
+    st->LeftKanary = st->RightKanary = 0;
 
     st->data = (StackElem_t*) calloc(capacity, sizeof(StackElem_t));
-    STACK_ASSERT(st, BAD_PTR);
+    if (st->data == NULL) st->debug_info->err_bits |= BAD_PTR;
+
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
     for (size_t i = 0; i < capacity; i++) st->data[i] = POISON_NUM;
 
-    STACK_DUMP(st, CTOR_END);
+    StackUpdateHash(st);
+    STACK_DUMP(st);
 
     return SUCCESS;
 }
 
-FuncReturn StackDump(Stack* st, const char* file, const char* func, int line, FuncReturn status) {
-    STACK_ASSERT(st, BAD_PTR);
-    ASSERT(file != NULL, ERR_MSG_NULL_PTR);
-    ASSERT(func != NULL, ERR_MSG_NULL_PTR);
-
+FuncReturn StackDump(Stack* st, const char* file, const char* func, int line) {
     FILE* log_filename = fopen(LOG_FILE, "a");
 
     if (!log_filename) {
         printf(RED("Error occured while opening file\n"));
-        STACK_DUMP(st, BAD_FILE);
+        st->debug_info->err_bits |= BAD_FILE;
 
-        return BAD_FILE;
+        STACK_ASSERT(st);
     }
 
-    DumpPrint(log_filename, st, file, func, line, status);
+    if (st != NULL) {
+        if (st->debug_info->err_bits == 0) DumpPrint(log_filename, st, file, func, line);
+        else DumpErrorPrint(log_filename, st, file, func, line);
+    } else {
+        fprintf(log_filename, "STACK WAS DESTROYED!!!\n\n");
+    }
     fclose(log_filename);
 
     return SUCCESS;
@@ -76,38 +72,63 @@ static tm GetTime() {
     return *localtime(&time_now);
 }
 
-enum FuncReturn DumpPrint(FILE* filename, Stack* st,
-                          const char *file, const char *func, int line, FuncReturn status) {
-    STACK_ASSERT(st, BAD_PTR);
+enum FuncReturn DumpErrorPrint(FILE* filename, Stack* st, const char *file, const char *func, int line) {
     ASSERT(filename != NULL, ERR_MSG_NULL_PTR);
+    ASSERT(st       != NULL, ERR_MSG_NULL_PTR);
     ASSERT(file     != NULL, ERR_MSG_NULL_PTR);
     ASSERT(func     != NULL, ERR_MSG_NULL_PTR);
 
     struct tm tm = GetTime();
 
-    fprintf(filename, "DUMPED %d-%02d-%02d %02d:%02d:%02d\nStack [%p] {%s} %s: %d, from %s: %d (%s -> %s) {\n\
-            size = %lld,\n\
-            capacity = %lld,\n\
-            data [%p] {\n",
-            tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec,
-            st, st->debug_info->var_name, st->debug_info->filename, st->debug_info->line, file, line, func,
-            StackStrErr(status), st->size, st->capacity, st->data);
+    fprintf(filename, "%-30s ERROR %d-%02d-%02d %02d:%02d:%02d %s\n",
+            "=", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec, "=");
+    fprintf(filename, "Stack [%p] {%s} %s: %d, from %s: %d (%s)\n",
+           (void*)st, st->debug_info->var_name, st->debug_info->filename, st->debug_info->line, file, line, func);
 
-    for (size_t i = 0; i < st->capacity; i++) {
-        if (i < st->size) {
-            fprintf(filename, "%14c * [%lld] %d\n", ' ', i, st->data[i]);
-        } else {
-            fprintf(filename, "%16c [%lld] %d (POISON)\n", ' ', i, st->data[i]);
+    size_t mask = 0b1;
+    for (size_t i = 0; i < 32; i++) {
+        if (((size_t)st->debug_info->err_bits & mask) == mask ) {
+            fprintf(filename, ">>> %s\n", StackStrErr((FuncReturn)((size_t)st->debug_info->err_bits & mask)));
         }
+        mask = mask << 1;
     }
-    fprintf(filename, "%12c}\n}\n\n", ' ');
+    fputc('\n', filename);
 
     return SUCCESS;
 }
 
-int StackOk(Stack* st) {  // todo add more checks, size < capacity, poisons after size O(N)
-    // todo invent 2 more checks
-    return (st != NULL);        //*(st != NULL && st->data != NULL)
+enum FuncReturn DumpPrint(FILE* filename, Stack* st, const char *file, const char *func, int line) {
+    ASSERT(filename != NULL, ERR_MSG_NULL_PTR);
+    ASSERT(st       != NULL, ERR_MSG_NULL_PTR);
+    ASSERT(file     != NULL, ERR_MSG_NULL_PTR);
+    ASSERT(func     != NULL, ERR_MSG_NULL_PTR);
+
+    struct tm tm = GetTime();
+
+    fprintf(filename, "DUMPED %d-%02d-%02d %02d:%02d:%02d\n",
+            tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+    fprintf(filename, "Stack [%p] {%s} %s: %d, from %s: %d (%s -> SUCCESS) {\n",
+           (void*)st, st->debug_info->var_name, st->debug_info->filename, st->debug_info->line, file, line, func);
+    fprintf(filename, "\tsize = %lu,\n\tcapacity = %lu,\n\thash1 = %lu,\n\thash2 = %lu,\n\tdata [%p] {\n",
+                        st->size,    st->capacity,     st->hash1,      st->hash2, (void*)st->data);
+
+    for (size_t i = 0; i < st->capacity; i++) {
+        if (i < st->size && st->data[i] != POISON_NUM) {
+            fprintf(filename, "\t\t* [%lu] %d\n", i, st->data[i]);
+        } else {
+            fprintf(filename, "\t\t  [%lu] %d (POISON)\n", i, st->data[i]);
+        }
+    }
+
+    fprintf(filename, "\t}\n}\n\n");
+
+    return SUCCESS;
+}
+
+int StackOk(Stack* st) {
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+
+    return st->debug_info->err_bits == 0;
 }
 
 const char* StackStrErr(FuncReturn error) {
@@ -117,82 +138,108 @@ const char* StackStrErr(FuncReturn error) {
         DESCR_(BAD_FILE);
         DESCR_(BAD_PTR);
         DESCR_(BAD_SIZE);
-        DESCR_(ERROR);
         DESCR_(EMPTY_STACK);
-        DESCR_(DTOR_START);   DESCR_(DTOR_END);
-        DESCR_(POP_START);    DESCR_(POP_END);
-        DESCR_(PUSH_START);   DESCR_(PUSH_END);
-        DESCR_(CTOR_START);   DESCR_(CTOR_END);
-        DESCR_(CLEAN_START);  DESCR_(CLEAN_END);
-        DESCR_(RESIZE_START); DESCR_(RESIZE_END);
+        DESCR_(STACK_OVERFLOW);
+        DESCR_(KANARY_DAMAGED);
+        DESCR_(HASH_ERROR);
         default: return "UNKNOWN STATUS";
     }
     #undef DESCR_
 }
 
 enum FuncReturn StackPush(Stack* st, StackElem_t value) {
-    STACK_ASSERT(st, BAD_PTR);
-    STACK_DUMP(st, PUSH_START);
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+
+    StackHashCheck(st);
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
+    STACK_DUMP(st);
 
     if (st->size >= st->capacity) StackResize(st, st->capacity * 2);
+
+    if (st->size >= st->capacity) {
+        st->debug_info->err_bits |= STACK_OVERFLOW;
+        STACK_ASSERT(st);
+    }
+
+    STACK_DUMP(st);
 
     st->data[st->size] = value;
     st->size++;
 
-    STACK_ASSERT(st, BAD_PTR);
-    STACK_DUMP(st, PUSH_END);
+    StackUpdateHash(st);
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
+    STACK_DUMP(st);
 
     return SUCCESS;
 }
 
 enum FuncReturn StackPop(Stack* st, StackElem_t* value) {
-    STACK_ASSERT(st, BAD_PTR);
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+    StackHashCheck(st);
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
     ASSERT(value != NULL, ERR_MSG_NULL_PTR);
-    STACK_DUMP(st, POP_START);
+    STACK_DUMP(st);
 
-    if (st->size > 0) {
-        *value = st->data[st->size - 1];
-        st->data[st->size - 1] = POISON_NUM;
-        st->size--;
-    } else {
-        STACK_DUMP(st, EMPTY_STACK);
+    if (st->size > 0 && st->data[st->size - 1] == POISON_NUM) {
+        st->debug_info->err_bits |= EMPTY_STACK;
+        STACK_ASSERT(st);
+
         return EMPTY_STACK;
+    } else if (st->size <= 0) {
+        st->debug_info->err_bits |= BAD_SIZE;
+        STACK_ASSERT(st);
+
+        return BAD_FILE;
     }
+
+    *value = st->data[st->size - 1];
+    st->data[st->size - 1] = POISON_NUM;
+    st->size--;
+    StackUpdateHash(st);
 
     if (st->size <= st->capacity / 4) StackResize(st, st->capacity / 2);
 
-    STACK_ASSERT(st, BAD_PTR);
-    STACK_DUMP(st, POP_END);
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
+    STACK_DUMP(st);
 
     return SUCCESS;
 }
 
 enum FuncReturn StackDtor(Stack* st) {
-    STACK_ASSERT(st, BAD_PTR);
-    STACK_DUMP(st, DTOR_START);
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+    StackHashCheck(st);
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
 
-    FREE(st->data);
-    st->size = 0;
-    st->capacity = 0;
+    FREE(st);
 
-    STACK_DUMP(st, DTOR_END);
+    STACK_DUMP(st);
 
     return SUCCESS;
 }
 
 enum FuncReturn StackResize(Stack* st, size_t new_size) {
-    STACK_ASSERT(st, BAD_PTR);
-    STACK_DUMP(st, RESIZE_START);
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+    StackHashCheck(st);
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
+    STACK_DUMP(st);
 
     ReCalloc(st, new_size);
 
-    STACK_DUMP(st, RESIZE_END);
+    StackUpdateHash(st);
+    StackKanaryCheck(st);
+    STACK_DUMP(st);
 
     return SUCCESS;
 }
 
 enum FuncReturn ReCalloc(Stack* st, size_t new_size) {
-    STACK_ASSERT(st, BAD_PTR);
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
 
     st->data = (StackElem_t*) realloc(st->data, sizeof(StackElem_t) * new_size);
     ASSERT(st->data != NULL, ERR_MSG_NULL_PTR);
@@ -200,16 +247,91 @@ enum FuncReturn ReCalloc(Stack* st, size_t new_size) {
     if (new_size > st->capacity) for (size_t i = st->size; i < new_size; i++) st->data[i] = POISON_NUM;
     st->capacity = new_size;
 
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
+
     return SUCCESS;
 }
 
-size_t StackFind(Stack* st, StackElem_t* find_value) {
-    STACK_ASSERT(st, BAD_PTR);
-    ASSERT(find_value != NULL, ERR_MSG_NULL_PTR);
+size_t StackFind(Stack* st, StackElem_t find_value) {
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+    StackHashCheck(st);
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
 
     for (size_t i = 0; i < st->size; i++)
-        if (st->data[i] == *find_value)
+        if (st->data[i] == find_value)
             return i;
 
     return st->capacity;
+}
+
+enum FuncReturn StackClean(Stack* st) {
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+    StackHashCheck(st);
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
+    STACK_DUMP(st);
+
+    for (size_t i = 0; i < st->size; i++) st->data[i] = POISON_NUM;
+    st->size = 0;
+
+    StackUpdateHash(st);
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
+    STACK_DUMP(st);
+
+    return SUCCESS;
+}
+
+
+void StackKanaryCheck(Stack* st) {
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+
+    if (st->RightKanary != st->LeftKanary) {
+        st->debug_info->err_bits |= KANARY_DAMAGED;
+    }
+}
+
+size_t HashFunc1(Stack* st) {
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
+
+    size_t hash = 0;
+    for (size_t i = 0; i < st->size; i++) {
+        hash = (size_t)st->data[i] + (hash << 16) + (hash >> 7) - hash;
+    }
+
+    return hash;
+}
+// todo func with for (void*)
+size_t HashFunc2(Stack* st) {
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+    StackKanaryCheck(st);
+    STACK_ASSERT(st);
+
+    size_t hash = 1;
+    for (size_t i = 0; i < st->size; i++) {
+        hash = (size_t)st->data[i] * (hash << 11) + (hash >> 4) - hash;
+    }
+
+    return hash;
+}
+
+void StackHashCheck(Stack* st) {
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+
+    if (st->hash1 != HashFunc1(st) || st->hash2 != HashFunc2(st)) {
+        st->debug_info->err_bits |= HASH_ERROR;
+    }
+}
+
+enum FuncReturn StackUpdateHash(Stack* st) {
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+
+    st->hash1 = HashFunc1(st);
+    st->hash2 = HashFunc2(st);
+
+    return SUCCESS;
 }
