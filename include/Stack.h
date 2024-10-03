@@ -8,16 +8,20 @@ typedef int StackElem_t;
 struct DebugInfo {
     const char* filename;
     const char*     func;
-    int             line;
     const char* var_name;
-    char        err_bits;
+    int             line;
+    int         err_bits;
 };
 
 struct Stack {
-    DebugInfo* debug_info;
-    StackElem_t*     data;
-    size_t           size;
-    size_t       capacity;
+    long int    RightKanary;
+    DebugInfo*   debug_info;
+    size_t            hash1;
+    StackElem_t*       data;
+    size_t             size;
+    size_t         capacity;
+    size_t            hash2;
+    long int     LeftKanary;
 };
 
 #endif // STACK

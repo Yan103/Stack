@@ -1,6 +1,6 @@
 /*!
     \file
-    File with
+    File with default functions
 */
 
 #ifndef DEFAULT_H
@@ -27,9 +27,6 @@
 
 /// Proper release of dynamic memory
 #define FREE(object) { free(object); (object) = NULL; }
-
-/// Passes data about the file, function, and string to the my_assert function
-#define ASSERT(condition, text_error) my_assert(condition, text_error, __FILE__, __func__, __LINE__)
 
 /*!
     Function that, in case of an error, prints where it occurred and terminates the program
