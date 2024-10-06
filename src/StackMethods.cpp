@@ -1,3 +1,8 @@
+/*!
+    \file
+    File with the declaration of the my stack functions
+*/
+
 #include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,13 +10,27 @@
 #include <time.h>
 
 #include "Default.h"
+#include "ReturnCodes.h"
 #include "StackMethods.h"
 #include "Stack.h"
-#include "ReturnCodes.h"
 
+/// @brief Constant with log filename
 const char* LOG_FILE         = "log.txt";
+
+/// @brief Constant with message about NULL pointer
 const char* ERR_MSG_NULL_PTR = "Null pointer was passed";
 
+/// @brief Constant with 30 equals ('=') symbols
+const char* THIRTYEQUALS     = "=============================="; //// CRINGE???
+
+/*!
+    @brief Function that do stack initialization
+    \param [in] st       - the pointer on pointer on Stack structer
+    \param [in] file     - file in which was called function
+    \param [in] func     - function in which was called function
+    \param [in] line     - line in which was called function
+    \param [in] var_name - the name of variable with stack
+*/
 enum FuncReturn StackInit(Stack** st, const char *file, const char *func, int line, const char* var_name) {
     ASSERT(st   != NULL, ERR_MSG_NULL_PTR);
 
@@ -20,9 +39,16 @@ enum FuncReturn StackInit(Stack** st, const char *file, const char *func, int li
 
     DEBUG_INFO(*st);
 
+    StackCtor(*st, START_SIZE);
+
     return SUCCESS;
 }
-// todo 1 func
+
+/*!
+    @brief Function that creates the stack
+    \param [in] st       - the pointer on Stack structer
+    \param [in] capacity - the max size of stack
+*/
 enum FuncReturn StackCtor(Stack* st, size_t capacity) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
     StackKanaryCheck(st);
@@ -45,6 +71,13 @@ enum FuncReturn StackCtor(Stack* st, size_t capacity) {
     return SUCCESS;
 }
 
+/*!
+    @brief Function that dumping all information about stack
+    \param [in] st - the pointer on Stack structer
+    \param [in] file     - file in which was called function
+    \param [in] func     - function in which was called function
+    \param [in] line     - line in which was called function
+*/
 FuncReturn StackDump(Stack* st, const char* file, const char* func, int line) {
     FILE* log_filename = fopen(LOG_FILE, "a");
 
@@ -59,19 +92,33 @@ FuncReturn StackDump(Stack* st, const char* file, const char* func, int line) {
         if (st->debug_info->err_bits == 0) DumpPrint(log_filename, st, file, func, line);
         else DumpErrorPrint(log_filename, st, file, func, line);
     } else {
-        fprintf(log_filename, "STACK WAS DESTROYED!!!\n\n");
+        fprintf(log_filename, "%s", THIRTYEQUALS);
+        fprintf(log_filename, " STACK WAS DESTROYED!!! ");
+        fprintf(log_filename, "%s", THIRTYEQUALS);
+        fprintf(log_filename, "\n\n");
     }
     fclose(log_filename);
 
     return SUCCESS;
 }
 
+/*!
+    @brief Function that returns time in what function was launched
+*/
 static tm GetTime() {
     time_t time_now = time(NULL);
 
     return *localtime(&time_now);
 }
 
+/*!
+    @brief Function that shows information about stack errors
+    \param [in] filename - the pointer on FILE
+    \param [in] st       - the pointer on Stack structer
+    \param [in] file     - file in which was called function
+    \param [in] func     - function in which was called function
+    \param [in] line     - line in which was called function
+*/
 enum FuncReturn DumpErrorPrint(FILE* filename, Stack* st, const char *file, const char *func, int line) {
     ASSERT(filename != NULL, ERR_MSG_NULL_PTR);
     ASSERT(st       != NULL, ERR_MSG_NULL_PTR);
@@ -80,8 +127,8 @@ enum FuncReturn DumpErrorPrint(FILE* filename, Stack* st, const char *file, cons
 
     struct tm tm = GetTime();
 
-    fprintf(filename, "%-30s ERROR %d-%02d-%02d %02d:%02d:%02d %s\n",
-            "=", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec, "=");
+    fprintf(filename, "%s ERROR %d-%02d-%02d %02d:%02d:%02d %s\n",
+            THIRTYEQUALS, tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec, THIRTYEQUALS);
     fprintf(filename, "Stack [%p] {%s} %s: %d, from %s: %d (%s)\n",
            (void*)st, st->debug_info->var_name, st->debug_info->filename, st->debug_info->line, file, line, func);
 
@@ -97,6 +144,14 @@ enum FuncReturn DumpErrorPrint(FILE* filename, Stack* st, const char *file, cons
     return SUCCESS;
 }
 
+/*!
+    @brief Function that shows information about stack
+    \param [in] filename - the pointer on FILE
+    \param [in] st       - the pointer on Stack structer
+    \param [in] file     - file in which was called function
+    \param [in] func     - function in which was called function
+    \param [in] line     - line in which was called function
+*/
 enum FuncReturn DumpPrint(FILE* filename, Stack* st, const char *file, const char *func, int line) {
     ASSERT(filename != NULL, ERR_MSG_NULL_PTR);
     ASSERT(st       != NULL, ERR_MSG_NULL_PTR);
@@ -125,13 +180,22 @@ enum FuncReturn DumpPrint(FILE* filename, Stack* st, const char *file, const cha
     return SUCCESS;
 }
 
+/*!
+    @brief Function that checks stack state
+    \param [in] st - the pointer on Stack structer
+*/
 int StackOk(Stack* st) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
 
     return st->debug_info->err_bits == 0;
 }
 
+/*!
+    @brief Function that get string name of error
+    \param [in] error - the enum value of FuncReturn
+*/
 const char* StackStrErr(FuncReturn error) {
+    /// @brief Macros for case-return short form
     #define DESCR_(error) { case error: return #error; }
     switch (error) {
         DESCR_(SUCCESS);
@@ -142,11 +206,17 @@ const char* StackStrErr(FuncReturn error) {
         DESCR_(STACK_OVERFLOW);
         DESCR_(KANARY_DAMAGED);
         DESCR_(HASH_ERROR);
+
         default: return "UNKNOWN STATUS";
     }
     #undef DESCR_
 }
 
+/*!
+    @brief Function that pushs new value in end of stack
+    \param [in] st    - the pointer on Stack structer
+    \param [in] value - the value which will push in last place in stack
+*/
 enum FuncReturn StackPush(Stack* st, StackElem_t value) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
 
@@ -162,25 +232,31 @@ enum FuncReturn StackPush(Stack* st, StackElem_t value) {
         STACK_ASSERT(st);
     }
 
-    STACK_DUMP(st);
-
     st->data[st->size] = value;
     st->size++;
 
     StackUpdateHash(st);
     StackKanaryCheck(st);
+
     STACK_ASSERT(st);
     STACK_DUMP(st);
 
     return SUCCESS;
 }
 
+/*!
+    @brief Function that gets last element in stack
+    \param [in] st    - the pointer on Stack structer
+    \param [in] value - the pointer on variable kuda will save the pop element
+*/
 enum FuncReturn StackPop(Stack* st, StackElem_t* value) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+    ASSERT(value != NULL, ERR_MSG_NULL_PTR);
+
     StackHashCheck(st);
     StackKanaryCheck(st);
+
     STACK_ASSERT(st);
-    ASSERT(value != NULL, ERR_MSG_NULL_PTR);
     STACK_DUMP(st);
 
     if (st->size > 0 && st->data[st->size - 1] == POISON_NUM) {
@@ -203,16 +279,23 @@ enum FuncReturn StackPop(Stack* st, StackElem_t* value) {
     if (st->size <= st->capacity / 4) StackResize(st, st->capacity / 2);
 
     StackKanaryCheck(st);
+
     STACK_ASSERT(st);
     STACK_DUMP(st);
 
     return SUCCESS;
 }
 
+/*!
+    @brief Function that destroys the stack
+    \param [in] st - the pointer on Stack structer
+*/
 enum FuncReturn StackDtor(Stack* st) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+
     StackHashCheck(st);
     StackKanaryCheck(st);
+
     STACK_ASSERT(st);
 
     FREE(st);
@@ -222,10 +305,17 @@ enum FuncReturn StackDtor(Stack* st) {
     return SUCCESS;
 }
 
+/*!
+    @brief Function that resizes stack size
+    \param [in] st       - the pointer on Stack structer
+    \param [in] new_size - the new size of stack
+*/
 enum FuncReturn StackResize(Stack* st, size_t new_size) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+
     StackHashCheck(st);
     StackKanaryCheck(st);
+
     STACK_ASSERT(st);
     STACK_DUMP(st);
 
@@ -233,11 +323,17 @@ enum FuncReturn StackResize(Stack* st, size_t new_size) {
 
     StackUpdateHash(st);
     StackKanaryCheck(st);
+
     STACK_DUMP(st);
 
     return SUCCESS;
 }
 
+/*!
+    @brief Function that realloc memory and fills it POISON_NUM
+    \param [in] st       - the pointer on Stack structer
+    \param [in] new_size - the new size of stack
+*/
 enum FuncReturn ReCalloc(Stack* st, size_t new_size) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
 
@@ -248,15 +344,23 @@ enum FuncReturn ReCalloc(Stack* st, size_t new_size) {
     st->capacity = new_size;
 
     StackKanaryCheck(st);
+
     STACK_ASSERT(st);
 
     return SUCCESS;
 }
 
+/*!
+    @brief Function that try find element in stack (return element's index if he in stack, else capacity)
+    \param [in] st         - the pointer on Stack structer
+    \param [in] find_value - the find value
+*/
 size_t StackFind(Stack* st, StackElem_t find_value) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+
     StackHashCheck(st);
     StackKanaryCheck(st);
+
     STACK_ASSERT(st);
 
     for (size_t i = 0; i < st->size; i++)
@@ -266,10 +370,16 @@ size_t StackFind(Stack* st, StackElem_t find_value) {
     return st->capacity;
 }
 
+/*!
+    @brief Function that cleans the stack
+    \param [in] st - the pointer on Stack structer
+*/
 enum FuncReturn StackClean(Stack* st) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+
     StackHashCheck(st);
     StackKanaryCheck(st);
+
     STACK_ASSERT(st);
     STACK_DUMP(st);
 
@@ -278,13 +388,17 @@ enum FuncReturn StackClean(Stack* st) {
 
     StackUpdateHash(st);
     StackKanaryCheck(st);
+
     STACK_ASSERT(st);
     STACK_DUMP(st);
 
     return SUCCESS;
 }
 
-
+/*!
+    @brief Function that checks the right and left kanaryees
+    \param [in] st - the pointer on Stack structer
+*/
 void StackKanaryCheck(Stack* st) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
 
@@ -293,45 +407,97 @@ void StackKanaryCheck(Stack* st) {
     }
 }
 
-size_t HashFunc1(Stack* st) {
-    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
-    StackKanaryCheck(st);
-    STACK_ASSERT(st);
+/*!
+    @brief Function that calculates hash for void* type
+    \param [in] arr      - the pointer on array
+    \param [in] ElemSize - the size of elements
+    \param [in] ElemNum  - the number of elements
+*/
+static size_t voidHashFunc1(void* arr, size_t ElemSize, size_t ElemNum) {
+    ASSERT(arr != NULL, ERR_MSG_NULL_PTR);
 
     size_t hash = 0;
-    for (size_t i = 0; i < st->size; i++) {
-        hash = (size_t)st->data[i] + (hash << 16) + (hash >> 7) - hash;
+    size_t data = (size_t)arr;
+    for (size_t i = 0; i < ElemNum; i++) {
+        hash = data + (hash << 16) + (hash >> 7) - hash;
+        data += ElemSize;
     }
 
     return hash;
 }
-// todo func with for (void*)
-size_t HashFunc2(Stack* st) {
-    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
-    StackKanaryCheck(st);
-    STACK_ASSERT(st);
+
+/*!
+    @brief Function that calculates hash for void* type
+    \param [in] arr      - the pointer on array
+    \param [in] ElemSize - the size of elements
+    \param [in] ElemNum  - the number of elements
+*/
+static size_t voidHashFunc2(void* arr, size_t ElemSize, size_t ElemNum) {
+    ASSERT(arr != NULL, ERR_MSG_NULL_PTR);
 
     size_t hash = 1;
-    for (size_t i = 0; i < st->size; i++) {
-        hash = (size_t)st->data[i] * (hash << 11) + (hash >> 4) - hash;
+    size_t data = (size_t)arr;
+    for (size_t i = 0; i < ElemNum; i++) {
+        hash = data + (hash << 11) + (hash >> 4) - hash;
+        data += ElemSize;
     }
 
     return hash;
 }
 
+/*!
+    @brief Function that calculates first hash for stack
+    \param [in] st - the pointer on Stack structer
+*/
+size_t StackHashFunc1(Stack* st) {
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+
+    StackKanaryCheck(st);
+
+    STACK_ASSERT(st);
+
+    size_t hash = voidHashFunc1(st->data, sizeof(StackElem_t), st->size);
+
+    return hash;
+}
+
+/*!
+    @brief Function that calculates second hash for stack
+    \param [in] st - the pointer on Stack structer
+*/
+size_t StackHashFunc2(Stack* st) {
+    ASSERT(st != NULL, ERR_MSG_NULL_PTR);
+
+    StackKanaryCheck(st);
+
+    STACK_ASSERT(st);
+
+    size_t hash = voidHashFunc2(st->data, sizeof(StackElem_t), st->size);
+
+    return hash;
+}
+
+/*!
+    @brief Function that checks the stack hashes
+    \param [in] st - the pointer on Stack structer
+*/
 void StackHashCheck(Stack* st) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
 
-    if (st->hash1 != HashFunc1(st) || st->hash2 != HashFunc2(st)) {
+    if (st->hash1 != StackHashFunc1(st) || st->hash2 != StackHashFunc2(st)) {
         st->debug_info->err_bits |= HASH_ERROR;
     }
 }
 
+/*!
+    @brief Function that updates stack hashes
+    \param [in] st - the pointer on Stack structer
+*/
 enum FuncReturn StackUpdateHash(Stack* st) {
     ASSERT(st != NULL, ERR_MSG_NULL_PTR);
 
-    st->hash1 = HashFunc1(st);
-    st->hash2 = HashFunc2(st);
+    st->hash1 = StackHashFunc1(st);
+    st->hash2 = StackHashFunc2(st);
 
     return SUCCESS;
 }

@@ -1,3 +1,8 @@
+/*!
+    \file
+    File with the main function
+*/
+
 #include <stdio.h>
 
 #include "Default.h"
@@ -9,7 +14,7 @@ int main() {
     STACK_INIT(st);
 
     //* todo update DumpPrint function (cringe)
-    //? todo do 2 hash func and hash_update
+    //* todo do 2 hash func and hash_update
     //* todo fix warnings
     //* todo make st a pointer
     //* todo struct?
@@ -21,14 +26,12 @@ int main() {
     //* todo fix sanitizer PRIKOLY
     //* todo add err_bits (bit vector)
 
-    StackCtor(st, START_SIZE);
-
     StackPush(st, 10);
     StackPush(st, 20);
     StackPush(st, 30);
 
-    st->debug_info->err_bits |= BAD_FILE;
-    st->debug_info->err_bits |= STACK_OVERFLOW;;
+    ////st->debug_info->err_bits |= BAD_FILE;
+    ////st->debug_info->err_bits |= STACK_OVERFLOW;;
 
     StackClean(st);
 
