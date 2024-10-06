@@ -29,7 +29,7 @@
 #define FREE(object) { free(object); (object) = NULL; }
 
 /*!
-    Function that, in case of an error, prints where it occurred and terminates the program
+    @brief Function that, in case of an error, prints where it occurred and terminates the program
     \param [in]  condition - the condition that needs to be checked
     \param [in] text_error - error description text
     \param [in]       file - the name of the file where the error occurred

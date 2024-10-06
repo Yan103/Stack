@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 
+/// @brief Enum with return functions codes
 enum FuncReturn {
     SUCCESS        = 0b0,
     BAD_PTR        = 0b1,
