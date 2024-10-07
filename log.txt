@@ -1,4 +1,4 @@
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 52 (StackCtor -> SUCCESS) {
 	size = 0,
 	capacity = 0,
@@ -8,7 +8,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 52 (Stack
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 66 (StackCtor -> SUCCESS) {
 	size = 0,
 	capacity = 2,
@@ -20,7 +20,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 66 (Stack
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
 	size = 0,
 	capacity = 2,
@@ -32,7 +32,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
 	size = 1,
 	capacity = 2,
@@ -44,7 +44,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
 	size = 1,
 	capacity = 2,
@@ -56,7 +56,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
 	size = 2,
 	capacity = 2,
@@ -68,7 +68,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
 	size = 2,
 	capacity = 2,
@@ -80,7 +80,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 317 (StackResize -> SUCCESS) {
 	size = 2,
 	capacity = 2,
@@ -92,7 +92,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 317 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 324 (StackResize -> SUCCESS) {
 	size = 2,
 	capacity = 4,
@@ -106,7 +106,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 324 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
 	size = 3,
 	capacity = 4,
@@ -120,7 +120,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 381 (StackClean -> SUCCESS) {
 	size = 3,
 	capacity = 4,
@@ -134,7 +134,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 381 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 390 (StackClean -> SUCCESS) {
 	size = 0,
 	capacity = 4,
@@ -148,7 +148,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 390 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
 	size = 0,
 	capacity = 4,
@@ -162,7 +162,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
 	size = 1,
 	capacity = 4,
@@ -176,583 +176,7 @@ Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (Stac
 	}
 }
 
-DUMPED 2024-10-07 22:52:43
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 297 (StackDtor -> SUCCESS) {
-	size = 1,
-	capacity = 4,
-	hash1 = 105690555220272,
-	hash2 = 105690555222319,
-	data [0x602000000130] {
-		* [0] 20
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 52 (StackCtor -> SUCCESS) {
-	size = 0,
-	capacity = 0,
-	hash1 = 0,
-	hash2 = 0,
-	data [(nil)] {
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 66 (StackCtor -> SUCCESS) {
-	size = 0,
-	capacity = 2,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000030] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 0,
-	capacity = 2,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000030] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 1,
-	capacity = 2,
-	hash1 = 105690555220016,
-	hash2 = 105690555222063,
-	data [0x602000000030] {
-		* [0] 10
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 1,
-	capacity = 2,
-	hash1 = 105690555220016,
-	hash2 = 105690555222063,
-	data [0x602000000030] {
-		* [0] 10
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 2,
-	capacity = 2,
-	hash1 = 6926537052606431236,
-	hash2 = 216460862754484359,
-	data [0x602000000030] {
-		* [0] 10
-		* [1] 20
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 2,
-	capacity = 2,
-	hash1 = 6926537052606431236,
-	hash2 = 216460862754484359,
-	data [0x602000000030] {
-		* [0] 10
-		* [1] 20
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 317 (StackResize -> SUCCESS) {
-	size = 2,
-	capacity = 2,
-	hash1 = 6926537052606431236,
-	hash2 = 216460862754484359,
-	data [0x602000000030] {
-		* [0] 10
-		* [1] 20
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 324 (StackResize -> SUCCESS) {
-	size = 2,
-	capacity = 4,
-	hash1 = 6926537052623208454,
-	hash2 = 216460862755008663,
-	data [0x602000000130] {
-		* [0] 10
-		* [1] 20
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 3,
-	capacity = 4,
-	hash1 = 11628541152308257074,
-	hash2 = 387162784950902698,
-	data [0x602000000130] {
-		* [0] 10
-		* [1] 20
-		* [2] 30
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 381 (StackClean -> SUCCESS) {
-	size = 3,
-	capacity = 4,
-	hash1 = 11628541152308257074,
-	hash2 = 387162784950902698,
-	data [0x602000000130] {
-		* [0] 10
-		* [1] 20
-		* [2] 30
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 390 (StackClean -> SUCCESS) {
-	size = 0,
-	capacity = 4,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000130] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 0,
-	capacity = 4,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000130] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 1,
-	capacity = 4,
-	hash1 = 105690555220272,
-	hash2 = 105690555222319,
-	data [0x602000000130] {
-		* [0] 20
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:53:09
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 297 (StackDtor -> SUCCESS) {
-	size = 1,
-	capacity = 4,
-	hash1 = 105690555220272,
-	hash2 = 105690555222319,
-	data [0x602000000130] {
-		* [0] 20
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 52 (StackCtor -> SUCCESS) {
-	size = 0,
-	capacity = 0,
-	hash1 = 0,
-	hash2 = 0,
-	data [(nil)] {
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 66 (StackCtor -> SUCCESS) {
-	size = 0,
-	capacity = 2,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000030] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 0,
-	capacity = 2,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000030] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 1,
-	capacity = 2,
-	hash1 = 105690555220016,
-	hash2 = 105690555222063,
-	data [0x602000000030] {
-		* [0] 10
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 1,
-	capacity = 2,
-	hash1 = 105690555220016,
-	hash2 = 105690555222063,
-	data [0x602000000030] {
-		* [0] 10
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 2,
-	capacity = 2,
-	hash1 = 6926537052606431236,
-	hash2 = 216460862754484359,
-	data [0x602000000030] {
-		* [0] 10
-		* [1] 20
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 2,
-	capacity = 2,
-	hash1 = 6926537052606431236,
-	hash2 = 216460862754484359,
-	data [0x602000000030] {
-		* [0] 10
-		* [1] 20
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 317 (StackResize -> SUCCESS) {
-	size = 2,
-	capacity = 2,
-	hash1 = 6926537052606431236,
-	hash2 = 216460862754484359,
-	data [0x602000000030] {
-		* [0] 10
-		* [1] 20
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 324 (StackResize -> SUCCESS) {
-	size = 2,
-	capacity = 4,
-	hash1 = 6926537052623208454,
-	hash2 = 216460862755008663,
-	data [0x602000000130] {
-		* [0] 10
-		* [1] 20
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 3,
-	capacity = 4,
-	hash1 = 11628541152308257074,
-	hash2 = 387162784950902698,
-	data [0x602000000130] {
-		* [0] 10
-		* [1] 20
-		* [2] 30
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 381 (StackClean -> SUCCESS) {
-	size = 3,
-	capacity = 4,
-	hash1 = 11628541152308257074,
-	hash2 = 387162784950902698,
-	data [0x602000000130] {
-		* [0] 10
-		* [1] 20
-		* [2] 30
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 390 (StackClean -> SUCCESS) {
-	size = 0,
-	capacity = 4,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000130] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 0,
-	capacity = 4,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000130] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 1,
-	capacity = 4,
-	hash1 = 105690555220272,
-	hash2 = 105690555222319,
-	data [0x602000000130] {
-		* [0] 20
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 22:55:15
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 297 (StackDtor -> SUCCESS) {
-	size = 1,
-	capacity = 4,
-	hash1 = 105690555220272,
-	hash2 = 105690555222319,
-	data [0x602000000130] {
-		* [0] 20
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 52 (StackCtor -> SUCCESS) {
-	size = 0,
-	capacity = 0,
-	hash1 = 0,
-	hash2 = 0,
-	data [(nil)] {
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 66 (StackCtor -> SUCCESS) {
-	size = 0,
-	capacity = 2,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000030] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 0,
-	capacity = 2,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000030] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 1,
-	capacity = 2,
-	hash1 = 105690555220016,
-	hash2 = 105690555222063,
-	data [0x602000000030] {
-		* [0] 10
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 1,
-	capacity = 2,
-	hash1 = 105690555220016,
-	hash2 = 105690555222063,
-	data [0x602000000030] {
-		* [0] 10
-		  [1] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 2,
-	capacity = 2,
-	hash1 = 6926537052606431236,
-	hash2 = 216460862754484359,
-	data [0x602000000030] {
-		* [0] 10
-		* [1] 20
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 2,
-	capacity = 2,
-	hash1 = 6926537052606431236,
-	hash2 = 216460862754484359,
-	data [0x602000000030] {
-		* [0] 10
-		* [1] 20
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 316 (StackResize -> SUCCESS) {
-	size = 2,
-	capacity = 2,
-	hash1 = 6926537052606431236,
-	hash2 = 216460862754484359,
-	data [0x602000000030] {
-		* [0] 10
-		* [1] 20
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 323 (StackResize -> SUCCESS) {
-	size = 2,
-	capacity = 4,
-	hash1 = 6926537052623208454,
-	hash2 = 216460862755008663,
-	data [0x602000000130] {
-		* [0] 10
-		* [1] 20
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 3,
-	capacity = 4,
-	hash1 = 11628541152308257074,
-	hash2 = 387162784950902698,
-	data [0x602000000130] {
-		* [0] 10
-		* [1] 20
-		* [2] 30
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 380 (StackClean -> SUCCESS) {
-	size = 3,
-	capacity = 4,
-	hash1 = 11628541152308257074,
-	hash2 = 387162784950902698,
-	data [0x602000000130] {
-		* [0] 10
-		* [1] 20
-		* [2] 30
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 389 (StackClean -> SUCCESS) {
-	size = 0,
-	capacity = 4,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000130] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 223 (StackPush -> SUCCESS) {
-	size = 0,
-	capacity = 4,
-	hash1 = 0,
-	hash2 = 1,
-	data [0x602000000130] {
-		  [0] -666 (POISON)
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
-Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 239 (StackPush -> SUCCESS) {
-	size = 1,
-	capacity = 4,
-	hash1 = 105690555220272,
-	hash2 = 105690555222319,
-	data [0x602000000130] {
-		* [0] 20
-		  [1] -666 (POISON)
-		  [2] -666 (POISON)
-		  [3] -666 (POISON)
-	}
-}
-
-DUMPED 2024-10-07 23:15:46
+DUMPED 2024-10-08 01:54:52
 Stack [0x606000000020] {} src/main.cpp: 13, from src/StackMethods.cpp: 297 (StackDtor -> SUCCESS) {
 	size = 1,
 	capacity = 4,
