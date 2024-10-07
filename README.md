@@ -5,11 +5,7 @@
 
 <div style="margin-right: 330px;">
 
-**Stack** - is a data structure consisting of an ordered set of elements in which new elements are added and existing ones are deleted from one end, called the top of the stack.
-
-</div>
-
-Moreover, the element that was placed there last is removed first from the stack, that is, the "last in, first out" (**last—in, first-out - LIFO**) strategy is implemented in the stack.
+**Stack** - is a data structure consisting of an ordered set of elements in which new elements are added and existing ones are deleted from one end, called the top of the stack. Moreover, the element that was placed there last is removed first from the stack, that is, the "last in, first out" (**last—in, first-out - LIFO**) strategy is implemented in the stack.
 
 The library implements its own stack and all standard methods. In addition, there are several additional methods, such as *StackCheak*, *StackClean* and *StackFind*.
 
