@@ -1,7 +1,7 @@
 # **STACK**
 
 
-<img align="right" width="320" height="210" src="img/STACK.jpg">
+<img align="right" width="335" height="220" src="img/STACK.jpg">
 
 <div style="margin-right: 330px;">
 
