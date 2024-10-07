@@ -10,8 +10,7 @@
 #include "StackMethods.h"
 
 int main() {
-    Stack* st = NULL;
-    STACK_INIT(st);
+    Stack* st = STACK_INIT();
 
     //* todo update DumpPrint function (cringe)
     //* todo do 2 hash func and hash_update

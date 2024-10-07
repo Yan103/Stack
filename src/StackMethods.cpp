@@ -15,13 +15,13 @@
 #include "Stack.h"
 
 /// @brief Constant with log filename
-const char* LOG_FILE         = "log.txt";
+static const char* LOG_FILE         = "log.txt";
 
 /// @brief Constant with message about NULL pointer
-const char* ERR_MSG_NULL_PTR = "Null pointer was passed";
+static const char* ERR_MSG_NULL_PTR = "Null pointer was passed";
 
 /// @brief Constant with 30 equals ('=') symbols
-const char* THIRTYEQUALS     = "=============================="; //// CRINGE???
+static const char* THIRTYEQUALS     = "=============================="; //// CRINGE???
 
 /*!
     @brief Function that do stack initialization
@@ -31,17 +31,14 @@ const char* THIRTYEQUALS     = "=============================="; //// CRINGE???
     \param [in] line     - line in which was called function
     \param [in] var_name - the name of variable with stack
 */
-enum FuncReturn StackInit(Stack** st, const char *file, const char *func, int line, const char* var_name) {
-    ASSERT(st   != NULL, ERR_MSG_NULL_PTR);
+Stack* StackInit(const char *file, const char *func, int line, const char* var_name) {
+    Stack* st = (Stack*) calloc(1, sizeof(Stack));
 
-    (*st) = (Stack*) calloc(1, sizeof(Stack));
-    ASSERT(st   != NULL, ERR_MSG_NULL_PTR);
+    DEBUG_INFO(st);
 
-    DEBUG_INFO(*st);
+    StackCtor(st, START_SIZE);
 
-    StackCtor(*st, START_SIZE);
-
-    return SUCCESS;
+    return st;
 }
 
 /*!
@@ -297,10 +294,9 @@ enum FuncReturn StackDtor(Stack* st) {
     StackKanaryCheck(st);
 
     STACK_ASSERT(st);
+    STACK_DUMP(st);
 
     FREE(st);
-
-    STACK_DUMP(st);
 
     return SUCCESS;
 }
