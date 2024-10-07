@@ -13,13 +13,13 @@
 #include "Stack.h"
 
 /// @brief Constant for poison elements in stack
-const int POISON_NUM = -666;
+static const int POISON_NUM = -666;
 
 /// @brief Constant for default stack size
-const int START_SIZE = 2;
+static const int START_SIZE = 2;
 
 /// @brief Macros for stack initialization
-#define STACK_INIT(st) { StackInit(&(st), __FILE__, __func__, __LINE__, #st); }
+#define STACK_INIT(st) StackInit(__FILE__, __func__, __LINE__, #st)
 
 //* ========== IMPORTANT ==========
 //* if you run the program in DEBUG mode (with the flag of the same name), additional information will be checked
@@ -70,7 +70,7 @@ void StackKanaryCheck(Stack* st);
     \param [in] line     - line in which was called function
     \param [in] var_name - the name of variable with stack
 */
-enum FuncReturn StackInit(Stack** st, const char *file, const char* func, int line, const char* var_name);
+Stack* StackInit(const char *file, const char* func, int line, const char* var_name);
 
 /*!
     @brief Function that creates the stack
